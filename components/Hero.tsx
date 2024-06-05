@@ -3,6 +3,7 @@ import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
 
 import { FaLocationArrow } from "react-icons/fa";
 import MagicButton from "./ui/MagicButton";
+import ShimmerButton from "./ui/ShimmerButton";
 
 const Hero = () => {
   return (
