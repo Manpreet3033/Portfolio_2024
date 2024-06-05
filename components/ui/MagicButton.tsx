@@ -33,7 +33,7 @@ const MagicButton = ({
     // </button>
     <button className="p-[3px] relative" onClick={handleClick}>
       <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
-      <div className="px-8 py-2 flex items-center gap-2  bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
+      <div className="px-6 py-2 inline-flex items-center gap-2  bg-black rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent">
         {position === "left" && icon}
         {title}
         {position === "right" && icon}
