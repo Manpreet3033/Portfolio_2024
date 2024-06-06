@@ -1,6 +1,4 @@
 import { CardHoverEffectDemo } from "@/components/Card";
-import { projects } from "@/data";
-import Link from "next/link";
 import React from "react";
 
 interface ProjectArray {

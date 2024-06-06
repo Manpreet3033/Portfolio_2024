@@ -5,12 +5,13 @@ import { useAuth, useUser } from "@clerk/nextjs";
 import React, { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import { auth, getAuth } from "@clerk/nextjs/server";
+import ErrorPage from "@/components/ErrorPage";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { userId } = useAuth();
   const router = useRouter();
   if (!userId) {
-    router.push("/sign-in");
+    return <ErrorPage />;
   } else {
     return (
       <main className="relative bg-black-400">
