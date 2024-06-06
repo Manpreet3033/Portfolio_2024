@@ -44,7 +44,9 @@ const result: Array<ProjectArray> = [
 const page = () => {
   return (
     <>
-      <h1 className="heading pt-12 text-blue-100">All Projects</h1>
+      <h1 className="font-bold text-4xl md:text-5xl text-center pt-12 text-blue-100">
+        All Projects
+      </h1>
       <section className="pb-10 flex items-center justify-center flex-wrap gap-5">
         <CardHoverEffectDemo projects={result} />
       </section>

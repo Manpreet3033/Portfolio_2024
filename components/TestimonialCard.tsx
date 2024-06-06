@@ -1,10 +1,10 @@
-import { HoverEffect } from "./ui/Card";
+import { TestimonialHoverEffect } from "./ui/TestimonialsCard";
 
 interface ProjectArray {
   id: number;
+  quote: string;
+  name: string;
   title: string;
-  description: string;
-  imgUrl: string;
 }
 
 export function TestimonialCardHoverEffectDemo({
@@ -14,7 +14,7 @@ export function TestimonialCardHoverEffectDemo({
 }) {
   return (
     <div className="flex items-center justify-center max-w-5xl mx-auto px-8">
-      <HoverEffect items={projects} />
+      <TestimonialHoverEffect items={projects} />
     </div>
   );
 }
