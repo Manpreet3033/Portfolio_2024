@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import { ThemeProvider } from "@/app/provider";
-import MagicButton from "@/components/ui/MagicButton";
+import { dark, neobrutalism } from "@clerk/themes";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,7 +32,7 @@ export default function RootLayout({
         <head>
           <link rel="icon" href="/jsm-logo.png" sizes="any" />
         </head>
-        <body className={inter.className}>
+        <body className={`${inter.className}`}>
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
