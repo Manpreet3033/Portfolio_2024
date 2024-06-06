@@ -3,6 +3,8 @@ import { cn } from "@/utils/cn";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
+import { FiEdit } from "react-icons/fi";
+import { MdDeleteOutline } from "react-icons/md";
 
 export const HoverEffect = ({
   items,
@@ -63,6 +65,10 @@ export const HoverEffect = ({
             </div>
             <CardTitle>{item.title}</CardTitle>
             <CardDescription>{item.description}</CardDescription>
+            <div className="flex w-full justify-end mt-4 items-center gap-4">
+              <FiEdit className="text-white hover:text-blue-300 transition-all text-lg md:text-xl cursor-pointer" />
+              <MdDeleteOutline className="text-[#D11A2A] hover:text-[#D11b2a] text-xl md:text-2xl cursor-pointer" />
+            </div>
           </Card>
         </Link>
       ))}

@@ -7,7 +7,7 @@ interface ProjectArray {
   imgUrl: string;
 }
 
-export function TestimonialCardHoverEffectDemo({
+export function CardHoverEffectDemo({
   projects,
 }: {
   projects: ProjectArray[];
