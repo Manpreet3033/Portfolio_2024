@@ -22,6 +22,9 @@ export const HoverEffect = ({
   className?: string;
 }) => {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const handleDelete = () => {
+    console.log("Delete Action Called");
+  };
 
   return (
     <div
@@ -31,8 +34,7 @@ export const HoverEffect = ({
       )}
     >
       {items.map((item, idx) => (
-        <Link
-          href={`/dashboard/projects/${item.id}`}
+        <div
           key={item.id}
           className="relative group  block p-2 h-full w-full"
           onMouseEnter={() => setHoveredIndex(idx)}
@@ -89,12 +91,25 @@ export const HoverEffect = ({
                 </div>
               )}
               <div className="flex gap-3 items-center justify-center">
-                <FiEdit className="text-white hover:text-blue-300 transition-all text-lg md:text-xl cursor-pointer" />
-                <MdDeleteOutline className="text-[#D11A2A] hover:text-[#D11b2a] text-xl md:text-2xl cursor-pointer" />
+                <Link
+                  href={
+                    item.type === "projects"
+                      ? `/dashboard/projects/edit/${item.id}`
+                      : `/dashboard/testimonials/edit/${item.id}`
+                  }
+                >
+                  <div>
+                    <FiEdit className="text-white hover:text-blue-300 hover:scale-150 transition-all text-lg md:text-xl cursor-pointer" />
+                  </div>
+                </Link>
+                <MdDeleteOutline
+                  className="text-[#D11A2A] hover:scale-150 transition-all hover:text-[#D11b2a] text-2xl md:text-2xl cursor-pointer"
+                  onClick={handleDelete}
+                />
               </div>
             </div>
           </Card>
-        </Link>
+        </div>
       ))}
     </div>
   );
