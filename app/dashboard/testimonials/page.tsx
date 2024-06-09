@@ -1,13 +1,22 @@
 import { TestimonialCardHoverEffectDemo } from "@/components/TestimonialCard";
 import React from "react";
 
-const testimonials = [
+interface TestimonialtArray {
+  id: number;
+  title: string;
+  quote: string;
+  name: string;
+  type?: string;
+}
+
+const testimonials: Array<TestimonialtArray> = [
   {
     id: 1,
     quote:
       "Collaborating with Manpreet was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Manpreet's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Manpreet is the ideal partner.",
     name: "Michael Johnson",
     title: "Director of AlphaStream Technologies",
+    type: "testimonials",
   },
   {
     id: 2,
@@ -15,6 +24,7 @@ const testimonials = [
       "Collaborating with Manpreet was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Manpreet's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Manpreet is the ideal partner.",
     name: "Michael Johnson",
     title: "Director of AlphaStream Technologies",
+    type: "testimonials",
   },
   {
     id: 3,
@@ -22,6 +32,7 @@ const testimonials = [
       "Collaborating with Manpreet was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Manpreet's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Manpreet is the ideal partner.",
     name: "Michael Johnson",
     title: "Director of AlphaStream Technologies",
+    type: "testimonials",
   },
   {
     id: 4,
@@ -29,6 +40,7 @@ const testimonials = [
       "Collaborating with Manpreet was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Manpreet's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Manpreet is the ideal partner.",
     name: "Michael Johnson",
     title: "Director of AlphaStream Technologies",
+    type: "testimonials",
   },
   {
     id: 5,
@@ -36,6 +48,7 @@ const testimonials = [
       "Collaborating with Manpreet was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Manpreet's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Manpreet is the ideal partner.",
     name: "Michael Johnson",
     title: "Director of AlphaStream Technologies",
+    type: "testimonials",
   },
 ];
 

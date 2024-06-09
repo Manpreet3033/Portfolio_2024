@@ -6,6 +6,7 @@ interface ProjectArray {
   title: string;
   description: string;
   imgUrl: string;
+  type?: string;
 }
 
 const result: Array<ProjectArray> = [
@@ -15,6 +16,7 @@ const result: Array<ProjectArray> = [
     description:
       "Explore the wonders of our solar system with this captivating 3D simulation of the planets using Three.js.",
     imgUrl: "/p1.svg",
+    type: "projects",
   },
   {
     id: 2,
@@ -22,6 +24,7 @@ const result: Array<ProjectArray> = [
     description:
       "Simplify your video conferencing experience with Yoom. Seamlessly connect with colleagues and friends.",
     imgUrl: "/p2.svg",
+    type: "projects",
   },
   {
     id: 3,
@@ -29,6 +32,7 @@ const result: Array<ProjectArray> = [
     description:
       "A REAL Software-as-a-Service app with AI features and a payments and credits system using the latest tech stack.",
     imgUrl: "/p3.svg",
+    type: "projects",
   },
   {
     id: 4,
@@ -36,6 +40,7 @@ const result: Array<ProjectArray> = [
     description:
       "A REAL Software-as-a-Service app with AI features and a payments and credits system using the latest tech stack.",
     imgUrl: "/p3.svg",
+    type: "projects",
   },
 ];
 

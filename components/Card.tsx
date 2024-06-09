@@ -4,7 +4,8 @@ interface ProjectArray {
   id: number;
   title: string;
   description: string;
-  imgUrl: string;
+  imgUrl?: string;
+  type?: string;
 }
 
 export function CardHoverEffectDemo({

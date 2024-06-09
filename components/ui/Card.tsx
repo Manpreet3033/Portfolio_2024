@@ -13,8 +13,11 @@ export const HoverEffect = ({
   items: {
     id: number;
     title: string;
-    description: string;
-    imgUrl: string;
+    description?: string;
+    imgUrl?: string;
+    quote?: string;
+    name?: string;
+    type?: string;
   }[];
   className?: string;
 }) => {
@@ -53,21 +56,42 @@ export const HoverEffect = ({
             )}
           </AnimatePresence>
           <Card>
-            <div className="relative flex items-center justify-center overflow-hidden h-52 mb-10">
-              <div className="relative w-full h-full overflow-hidden lg:rounded-3xl">
-                <img src="/bg.png" alt="bg-img" />
+            {item.type === "projects" && (
+              <div className="relative flex items-center justify-center overflow-hidden h-52 mb-10">
+                <div className="relative w-full h-full overflow-hidden lg:rounded-3xl">
+                  <img src="/bg.png" alt="bg-img" />
+                </div>
+                <img
+                  src={item.imgUrl}
+                  alt={item.title}
+                  className="z-10 absolute b-0 object-cover"
+                />
               </div>
-              <img
-                src={item.imgUrl}
-                alt={item.title}
-                className="z-10 absolute b-0 object-cover"
-              />
-            </div>
+            )}
             <CardTitle>{item.title}</CardTitle>
-            <CardDescription>{item.description}</CardDescription>
-            <div className="flex w-full justify-end mt-4 items-center gap-4">
-              <FiEdit className="text-white hover:text-blue-300 transition-all text-lg md:text-xl cursor-pointer" />
-              <MdDeleteOutline className="text-[#D11A2A] hover:text-[#D11b2a] text-xl md:text-2xl cursor-pointer" />
+            <CardDescription>{item.description || item.quote}</CardDescription>
+            <div
+              className={`flex w-full ${
+                item.type === "projects" ? "justify-end" : "justify-between"
+              } mt-4 items-center gap-4`}
+            >
+              {item.type === "testimonials" && (
+                <div className="flex items-center">
+                  <div className="me-3 xs-devices:hidden block">
+                    <img
+                      src="/profile.svg"
+                      alt="profile"
+                      width={35}
+                      height={35}
+                    />
+                  </div>
+                  <CardName>{item.name}</CardName>
+                </div>
+              )}
+              <div className="flex gap-3 items-center justify-center">
+                <FiEdit className="text-white hover:text-blue-300 transition-all text-lg md:text-xl cursor-pointer" />
+                <MdDeleteOutline className="text-[#D11A2A] hover:text-[#D11b2a] text-xl md:text-2xl cursor-pointer" />
+              </div>
             </div>
           </Card>
         </Link>
@@ -91,11 +115,31 @@ export const Card = ({
       )}
     >
       <div className="relative z-50">
-        <div className="p-4">{children}</div>
+        <div className="p-3">{children}</div>
       </div>
     </div>
   );
 };
+
+export const CardName = ({
+  className,
+  children,
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) => {
+  return (
+    <h5
+      className={cn(
+        "text-blue-100 text-sm font-semibold tracking-wide",
+        className
+      )}
+    >
+      {children}
+    </h5>
+  );
+};
+
 export const CardTitle = ({
   className,
   children,
