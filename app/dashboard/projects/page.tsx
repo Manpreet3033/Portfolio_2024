@@ -51,7 +51,7 @@ const page = () => {
         All Projects
       </h1>
       <section className="pb-10 flex items-center justify-center flex-wrap gap-5">
-        <CardHoverEffectDemo projects={result} />
+        <CardHoverEffectDemo items={result} />
       </section>
     </>
   );

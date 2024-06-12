@@ -1,7 +1,7 @@
-import { TestimonialCardHoverEffectDemo } from "@/components/TestimonialCard";
+import { CardHoverEffectDemo } from "@/components/Card";
 import React from "react";
 
-interface TestimonialtArray {
+interface TestimonialArray {
   id: number;
   title: string;
   quote: string;
@@ -9,7 +9,7 @@ interface TestimonialtArray {
   type?: string;
 }
 
-const testimonials: Array<TestimonialtArray> = [
+const testimonials: Array<TestimonialArray> = [
   {
     id: 1,
     quote:
@@ -59,7 +59,7 @@ const page = () => {
         Testimonials
       </h1>
       <section className="pb-10 flex items-center justify-center flex-wrap gap-5">
-        <TestimonialCardHoverEffectDemo projects={testimonials} />
+        <CardHoverEffectDemo items={testimonials} />
       </section>
     </>
   );

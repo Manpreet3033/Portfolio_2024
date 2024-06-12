@@ -29,14 +29,14 @@ export const HoverEffect = ({
   return (
     <div
       className={cn(
-        "grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3  py-10",
+        "grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl-devices:grid-cols-4 py-10",
         className
       )}
     >
       {items.map((item, idx) => (
         <div
           key={item.id}
-          className="relative group  block p-2 h-full w-full"
+          className="relative group block p-2 h-full w-full"
           onMouseEnter={() => setHoveredIndex(idx)}
           onMouseLeave={() => setHoveredIndex(null)}
         >
@@ -58,7 +58,7 @@ export const HoverEffect = ({
             )}
           </AnimatePresence>
           <Card>
-            {item.type === "projects" && (
+            {(item.type === "projects" || item.type === "work-experience") && (
               <div className="relative flex items-center justify-center overflow-hidden h-52 mb-10">
                 <div className="relative w-full h-full overflow-hidden lg:rounded-3xl">
                   <img src="/bg.png" alt="bg-img" />
@@ -74,7 +74,9 @@ export const HoverEffect = ({
             <CardDescription>{item.description || item.quote}</CardDescription>
             <div
               className={`flex w-full ${
-                item.type === "projects" ? "justify-end" : "justify-between"
+                item.type === "projects" || item.type === "work-experience"
+                  ? "justify-end"
+                  : "justify-between"
               } mt-4 items-center gap-4`}
             >
               {item.type === "testimonials" && (
@@ -95,7 +97,9 @@ export const HoverEffect = ({
                   href={
                     item.type === "projects"
                       ? `/dashboard/projects/edit/${item.id}`
-                      : `/dashboard/testimonials/edit/${item.id}`
+                      : item.type === "testimonials"
+                      ? `/dashboard/testimonials/edit/${item.id}`
+                      : `/dashboard/work-experiences/edit/${item.id}`
                   }
                 >
                   <div>

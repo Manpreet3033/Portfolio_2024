@@ -12,7 +12,7 @@ import { FaUser } from "react-icons/fa";
 const SideBar = () => {
   const pathname = usePathname();
   return (
-    <section className="flex flex-col sticky left-0 top-0 bg-black-100 h-screen justify-between overflow-y-auto max-sm:hidden pt-[8rem] lg:w-[266px]">
+    <section className="flex flex-col sticky left-0 top-0 bg-black-100 h-screen justify-between overflow-y-auto max-sm:hidden pt-[8rem] lg:w-[266px] xl-devices:w-[320px]">
       <div className="flex flex-1 flex-col lg:px-6 gap-6">
         {sidebarLinks.map((link) => {
           const isActive =
@@ -24,14 +24,14 @@ const SideBar = () => {
               key={link.route}
               className={`${
                 isActive ? "bg-black-300 rounded-2xl text-purple" : "text-white"
-              } flex items-center justify-start gap-2 p-3 `}
+              } flex items-center justify-start gap-2 p-3`}
             >
               <Image
                 src={link.imgURL}
                 alt={link.label}
-                height={35}
-                width={35}
-                className={`${isActive ? "" : ""}`}
+                height={30}
+                width={30}
+                className="max-lg:w-10 max-lg:h-10"
               />
               <p
                 className={`${

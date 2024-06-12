@@ -1,21 +1,19 @@
 import { HoverEffect } from "./ui/Card";
 
-interface ProjectArray {
+interface CardArray {
   id: number;
   title: string;
-  description: string;
+  quote?: string;
+  description?: string;
   imgUrl?: string;
+  name?: string;
   type?: string;
 }
 
-export function CardHoverEffectDemo({
-  projects,
-}: {
-  projects: ProjectArray[];
-}) {
+export function CardHoverEffectDemo({ items }: { items: CardArray[] }) {
   return (
-    <div className="flex items-center justify-center max-w-5xl mx-auto px-8">
-      <HoverEffect items={projects} />
+    <div className="flex items-center justify-center mx-auto px-8">
+      <HoverEffect items={items} />
     </div>
   );
 }
