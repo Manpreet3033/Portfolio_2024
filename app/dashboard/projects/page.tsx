@@ -1,4 +1,6 @@
 import { CardHoverEffectDemo } from "@/components/Card";
+import ShimmerButton from "@/components/ui/ShimmerButton";
+import Link from "next/link";
 import React from "react";
 
 interface ProjectArray {
@@ -53,6 +55,13 @@ const page = () => {
       <section className="pb-10 flex items-center justify-center flex-wrap gap-5">
         <CardHoverEffectDemo items={result} />
       </section>
+
+      <Link
+        className="flex justify-center items-center pb-20"
+        href={"/dashboard/projects/add"}
+      >
+        <ShimmerButton title="Add New Project" position="left" />
+      </Link>
     </>
   );
 };

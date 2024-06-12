@@ -15,7 +15,7 @@ const ShimmerButton = ({
 }: ShimmerButtonProps) => {
   return (
     <button
-      className="md:inline-block items-center lg:inline-block shadow-[0_0_0_3px_#000000_inset] xs-devices:px-2 px-6 py-2 bg-transparent border text-blue-100 border-white  rounded-lg font-bold transform hover:-translate-y-1 transition duration-400"
+      className="md:inline-block items-center lg:inline-block xs-devices:px-2 px-6 py-2 bg-transparent border text-blue-100 border-white  rounded-lg font-bold transform hover:-translate-y-1 transition duration-400"
       onClick={handleClick}
     >
       <span className="block md:hidden">{position === "left" && icon}</span>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import { ThemeProvider } from "@/app/provider";
 import { dark, neobrutalism } from "@clerk/themes";
@@ -39,6 +40,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <Toaster position="top-center" />
             {children}
           </ThemeProvider>
         </body>

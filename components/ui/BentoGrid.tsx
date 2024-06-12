@@ -4,10 +4,10 @@ import { BackgroundGradientAnimation } from "@/components/ui/GradientBG";
 import { GlobeDemo } from "./GridGlobe";
 import { leftLists, rightLists } from "@/data/index";
 import Lottie from "react-lottie";
-import { useEffect, useState } from "react";
 import animationData from "@/data/confetti.json";
 import MagicButton from "./MagicButton";
 import { IoCopyOutline } from "react-icons/io5";
+import React, { useState } from "react";
 
 export const BentoGrid = ({
   className,
@@ -50,8 +50,18 @@ export const BentoGridItem = ({
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText("manpreetkamboj60.net@gmail.com");
-    setCopied(true);
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard
+        .writeText("manpreetkamboj60.net@gmail.com")
+        .then(() => {
+          setCopied(true);
+        })
+        .catch((error) => {
+          console.error("Failed to copy email:", error);
+        });
+    } else {
+      console.error("Clipboard API not supported");
+    }
   };
 
   return (
