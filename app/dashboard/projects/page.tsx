@@ -60,7 +60,9 @@ const page = () => {
         className="flex justify-center items-center pb-20"
         href={"/dashboard/projects/add"}
       >
-        <ShimmerButton title="Add New Project" position="left" />
+        <button className="md:inline-block items-center lg:inline-block xs-devices:px-2 px-6 py-2 bg-transparent border text-blue-100 border-white  rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
+          <span>Add New Project</span>
+        </button>
       </Link>
     </>
   );
