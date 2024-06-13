@@ -7,7 +7,7 @@ interface CardArray {
   description?: string;
   imgUrl?: string;
   name?: string;
-  type: string;
+  type?: string;
 }
 
 export function CardHoverEffectDemo({ items }: { items: CardArray[] }) {

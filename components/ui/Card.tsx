@@ -22,7 +22,7 @@ export const HoverEffect = ({
     imgUrl?: string;
     quote?: string;
     name?: string;
-    type: string;
+    type?: string;
   }[];
   className?: string;
 }) => {
