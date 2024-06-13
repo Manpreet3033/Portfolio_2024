@@ -1,8 +1,13 @@
 "use client";
+import { deleteExperience } from "@/lib/actions/experience.action";
+import { deleteProject } from "@/lib/actions/projects.action";
 import { cn } from "@/utils/cn";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import path from "path";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { FiEdit } from "react-icons/fi";
 import { MdDeleteOutline } from "react-icons/md";
 
@@ -11,19 +16,39 @@ export const HoverEffect = ({
   className,
 }: {
   items: {
-    id: number;
+    _id: string;
     title: string;
     description?: string;
     imgUrl?: string;
     quote?: string;
     name?: string;
-    type?: string;
+    type: string;
   }[];
   className?: string;
 }) => {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const handleDelete = () => {
-    console.log("Delete Action Called");
+  const path = usePathname();
+  const handleDelete = async (id: string) => {
+    const toastId = toast.loading("Processing...");
+    try {
+      const item = items.find((item) => item._id === id);
+      if (item && item.type === "projects") {
+        await deleteProject({ id: id, path: path });
+        toast.success("Project Delete Successfully", {
+          id: toastId,
+        });
+      } else if (item && item.type === "work-experience") {
+        await deleteExperience({ id: id, path: path });
+        toast.success("Experience Delete Successfully", {
+          id: toastId,
+        });
+      }
+    } catch (error: any) {
+      console.log(error.message);
+      toast.error(error.message, {
+        id: toastId,
+      });
+    }
   };
 
   return (
@@ -35,7 +60,7 @@ export const HoverEffect = ({
     >
       {items.map((item, idx) => (
         <div
-          key={item.id}
+          key={item._id}
           className="relative group block p-2 h-full w-full"
           onMouseEnter={() => setHoveredIndex(idx)}
           onMouseLeave={() => setHoveredIndex(null)}
@@ -96,10 +121,10 @@ export const HoverEffect = ({
                 <Link
                   href={
                     item.type === "projects"
-                      ? `/dashboard/projects/edit/${item.id}`
+                      ? `/dashboard/projects/edit/${item._id}`
                       : item.type === "testimonials"
-                      ? `/dashboard/testimonials/edit/${item.id}`
-                      : `/dashboard/work-experiences/edit/${item.id}`
+                      ? `/dashboard/testimonials/edit/${item._id}`
+                      : `/dashboard/work-experiences/edit/${item._id}`
                   }
                 >
                   <div>
@@ -108,7 +133,9 @@ export const HoverEffect = ({
                 </Link>
                 <MdDeleteOutline
                   className="text-[#D11A2A] hover:scale-150 transition-all hover:text-[#D11b2a] text-2xl md:text-2xl cursor-pointer"
-                  onClick={handleDelete}
+                  onClick={() => {
+                    handleDelete(item._id);
+                  }}
                 />
               </div>
             </div>

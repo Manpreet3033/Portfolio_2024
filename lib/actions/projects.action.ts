@@ -26,11 +26,54 @@ export async function addProject(
   }
 }
 
+export async function getProjectById(id: string) {
+  try {
+    await connectToDatabase();
+    const projectDoc = await projectsModel.findById(id);
+    const project = projectDoc.toObject();
+    if (project) {
+      project._id = project._id.toString();
+    }
+    return { project };
+  } catch (err: any) {
+    console.log(err.message);
+    throw err;
+  }
+}
+
+export async function updateProject(
+  _id: string,
+  title: string,
+  description: string,
+  imgUrl: string
+) {
+  try {
+    await connectToDatabase();
+    const updatedProject = await projectsModel.findByIdAndUpdate(
+      _id,
+      {
+        title: title,
+        description: description,
+        imgUrl: imgUrl,
+      },
+      { new: true }
+    );
+    revalidatePath(`/dashboard/projects`);
+  } catch (err: any) {
+    console.log(err.message);
+    throw err;
+  }
+}
+
 export async function getAllProjects() {
   try {
     await connectToDatabase();
-    const allProjects = await projectsModel.find({});
-    return allProjects;
+    const projects = await projectsModel.find({});
+    const allProjects = projects.map((project) => ({
+      ...project.toObject(),
+      _id: project._id.toString(),
+    }));
+    return { allProjects };
   } catch (err: any) {
     console.log(err.message);
     throw err;

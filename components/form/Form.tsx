@@ -4,26 +4,39 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { toast } from "react-hot-toast";
 import { cn } from "@/utils/cn";
-import {
-  IconBrandGithub,
-  IconBrandGoogle,
-  IconBrandOnlyfans,
-} from "@tabler/icons-react";
 import { TextArea } from "../ui/textarea";
 import Image from "next/image";
 import { CldUploadWidget } from "next-cloudinary";
-import { addProject } from "@/lib/actions/projects.action";
-import { usePathname } from "next/navigation";
-import image from "next/image";
+import { addProject, updateProject } from "@/lib/actions/projects.action";
+import { usePathname, useRouter } from "next/navigation";
+import {
+  addWorkExperience,
+  updateWorkExperience,
+} from "@/lib/actions/experience.action";
+import path from "path";
 
-const initialState = {
-  title: "",
-  description: "",
-};
-
-export function Form() {
+export function Form({
+  formType,
+  _id,
+  title,
+  description,
+  imgUrl,
+  type,
+}: {
+  formType: string;
+  _id?: string;
+  title?: string;
+  description?: string;
+  imgUrl?: string;
+  type?: string;
+}) {
+  const initialState = {
+    title: title || "",
+    description: description || "",
+  };
+  const router = useRouter();
   const [formData, setFormData] = useState(initialState);
-  const [imgUrl, setImgUrl] = useState<string | undefined>();
+  const [img, setImg] = useState<string | undefined>(imgUrl || undefined);
   function handleChange(
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
@@ -38,12 +51,56 @@ export function Form() {
     console.log("Form submitted");
     const loadingToastId = toast.loading("Processing...");
     try {
-      await addProject(formData.title, formData.description, imgUrl, path);
-      toast.success("Project Added Successfully", {
-        id: loadingToastId,
-      });
+      if (type === "edit") {
+        if (formType === "work-experience") {
+          await updateWorkExperience(
+            //@ts-ignore
+            _id,
+            formData.title,
+            formData.description,
+            img,
+            path
+          );
+          toast.success("Project Updated Successfully", {
+            id: loadingToastId,
+          });
+          router.push(`/dashboard/work-experiences`);
+        } else {
+          await updateProject(
+            //@ts-ignore
+            _id,
+            formData.title,
+            formData.description,
+            img
+          );
+          toast.success("Project Updated Successfully", {
+            id: loadingToastId,
+          });
+          router.push(`/dashboard/projects`);
+        }
+      } else {
+        if (formType === "project") {
+          await addProject(formData.title, formData.description, img, path);
+          toast.success("Project Added Successfully", {
+            id: loadingToastId,
+          });
+          router.push(`/dashboard/projects`);
+        } else if (formType === "work-experience") {
+          await addWorkExperience(
+            formData.title,
+            formData.description,
+            img,
+            path
+          );
+          toast.success("Experience Added Successfully", {
+            id: loadingToastId,
+          });
+          router.push(`/dashboard/work-experiences`);
+        }
+      }
+
       setFormData(initialState);
-      setImgUrl(undefined);
+      setImg(undefined);
     } catch (err: any) {
       toast.error(err.message, {
         id: loadingToastId,
@@ -79,15 +136,16 @@ export function Form() {
           />
         </LabelInputContainer>
         <LabelInputContainer>
-          <Label htmlFor="image">Project Image</Label>
-          <span className="sr-only">Choose profile photo</span>
+          <Label htmlFor="image">
+            {formType === "project" ? "Project Image" : "Experience Image"}
+          </Label>
           <CldUploadWidget
             uploadPreset="awcutdlq"
             onSuccess={(result, { widget }) => {
               /*@ts-ignore*/
               if (result?.info?.secure_url) {
                 /*@ts-ignore*/
-                setImgUrl(result.info.secure_url);
+                setImg(result.info.secure_url);
               }
             }}
           >
@@ -101,14 +159,14 @@ export function Form() {
                   }}
                   className="bg-black-300 py-2 rounded-lg text-blue-100"
                 >
-                  Upload an Image
+                  {imgUrl ? "Upload a New Image" : "Upload an Image"}
                 </button>
               );
             }}
           </CldUploadWidget>
-          {imgUrl !== undefined && (
+          {(imgUrl != undefined || img !== undefined) && (
             <div className="flex justify-center items-center">
-              <Image src={imgUrl} alt="image" width={200} height={200} />
+              <Image src={img || imgUrl} alt="image" width={200} height={200} />
             </div>
           )}
         </LabelInputContainer>
@@ -117,7 +175,13 @@ export function Form() {
             className="bg-gradient-to-br relative group/btn  block bg-black-300 w-full text-white rounded-md h-10 font-medium"
             type="submit"
           >
-            Add Project
+            {formType === "project"
+              ? type === "edit"
+                ? "Edit Project"
+                : "Add Project"
+              : type === "edit"
+              ? "Edit Experience"
+              : "Add Experience"}
             <BottomGradient />
           </button>
         </div>

@@ -1,13 +1,13 @@
 import { HoverEffect } from "./ui/Card";
 
 interface CardArray {
-  id: number;
+  _id: string;
   title: string;
   quote?: string;
   description?: string;
   imgUrl?: string;
   name?: string;
-  type?: string;
+  type: string;
 }
 
 export function CardHoverEffectDemo({ items }: { items: CardArray[] }) {
