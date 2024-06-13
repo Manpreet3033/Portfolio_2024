@@ -2,7 +2,7 @@ import { CardHoverEffectDemo } from "@/components/Card";
 import React from "react";
 
 interface TestimonialArray {
-  id: number;
+  _id: string;
   title: string;
   quote: string;
   name: string;
@@ -11,7 +11,7 @@ interface TestimonialArray {
 
 const testimonials: Array<TestimonialArray> = [
   {
-    id: 1,
+    _id: "1",
     quote:
       "Collaborating with Manpreet was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Manpreet's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Manpreet is the ideal partner.",
     name: "Michael Johnson",
@@ -19,7 +19,7 @@ const testimonials: Array<TestimonialArray> = [
     type: "testimonials",
   },
   {
-    id: 2,
+    _id: "2",
     quote:
       "Collaborating with Manpreet was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Manpreet's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Manpreet is the ideal partner.",
     name: "Michael Johnson",
@@ -27,7 +27,7 @@ const testimonials: Array<TestimonialArray> = [
     type: "testimonials",
   },
   {
-    id: 3,
+    _id: "3",
     quote:
       "Collaborating with Manpreet was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Manpreet's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Manpreet is the ideal partner.",
     name: "Michael Johnson",
@@ -35,7 +35,7 @@ const testimonials: Array<TestimonialArray> = [
     type: "testimonials",
   },
   {
-    id: 4,
+    _id: "4",
     quote:
       "Collaborating with Manpreet was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Manpreet's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Manpreet is the ideal partner.",
     name: "Michael Johnson",
@@ -43,7 +43,7 @@ const testimonials: Array<TestimonialArray> = [
     type: "testimonials",
   },
   {
-    id: 5,
+    _id: "5",
     quote:
       "Collaborating with Manpreet was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Manpreet's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Manpreet is the ideal partner.",
     name: "Michael Johnson",
