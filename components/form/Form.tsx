@@ -166,6 +166,7 @@ export function Form({
           </CldUploadWidget>
           {(imgUrl != undefined || img !== undefined) && (
             <div className="flex justify-center items-center">
+              {/* @ts-ignore */}
               <Image src={img || imgUrl} alt="image" width={200} height={200} />
             </div>
           )}
