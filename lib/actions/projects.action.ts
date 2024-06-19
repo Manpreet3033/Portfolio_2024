@@ -9,6 +9,7 @@ export async function addProject(
   title: string,
   description: string,
   imgUrl: string | undefined,
+  liveLink: string,
   path: string
 ) {
   try {
@@ -17,6 +18,7 @@ export async function addProject(
       title: title,
       description: description,
       imgUrl: imgUrl,
+      liveLink: liveLink,
     });
     await newProject.save();
     revalidatePath(path);
@@ -45,7 +47,8 @@ export async function updateProject(
   _id: string,
   title: string,
   description: string,
-  imgUrl: string
+  imgUrl: string,
+  liveLink: string
 ) {
   try {
     await connectToDatabase();
@@ -55,6 +58,7 @@ export async function updateProject(
         title: title,
         description: description,
         imgUrl: imgUrl,
+        liveLink: liveLink,
       },
       { new: true }
     );

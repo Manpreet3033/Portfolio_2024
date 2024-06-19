@@ -1,10 +1,9 @@
 "use client";
 import SideBar from "@/components/SideBar";
 import { useRouter } from "next/navigation";
-import { useAuth, useUser } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
 import React, { useEffect } from "react";
 import Navbar from "@/components/Navbar";
-import { auth, getAuth } from "@clerk/nextjs/server";
 import ErrorPage from "../[...not_found]/page";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {

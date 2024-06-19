@@ -5,6 +5,7 @@ interface CardArray {
   title: string;
   quote?: string;
   description?: string;
+  liveLink?: string;
   imgUrl?: string;
   name?: string;
   type?: string;

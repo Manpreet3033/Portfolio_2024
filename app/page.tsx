@@ -9,7 +9,7 @@ import MyApproach from "@/components/MyApproach";
 import Footer from "@/components/Footer";
 import { connectToDatabase } from "@/lib/database/mongoose";
 
-export default async function Home() {
+export default function Home() {
   return (
     <main
       className="relative flex justify-center items-center 

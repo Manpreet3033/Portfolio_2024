@@ -18,6 +18,7 @@ const page = async ({ params }: { params: { id: string } }) => {
           title={data.title}
           description={data.description}
           imgUrl={data.imgUrl}
+          liveLink={data.liveLink}
         />
       </section>
     </>

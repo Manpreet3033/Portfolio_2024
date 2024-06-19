@@ -20,12 +20,14 @@ export function Form({
   _id,
   title,
   description,
+  liveLink,
   imgUrl,
   type,
 }: {
   formType: string;
   _id?: string;
   title?: string;
+  liveLink?: string;
   description?: string;
   imgUrl?: string;
   type?: string;
@@ -33,6 +35,7 @@ export function Form({
   const initialState = {
     title: title || "",
     description: description || "",
+    liveLink: liveLink || "",
   };
   const router = useRouter();
   const [formData, setFormData] = useState(initialState);
@@ -71,7 +74,8 @@ export function Form({
             _id,
             formData.title,
             formData.description,
-            img
+            img,
+            formData.liveLink
           );
           toast.success("Project Updated Successfully", {
             id: loadingToastId,
@@ -80,7 +84,13 @@ export function Form({
         }
       } else {
         if (formType === "project") {
-          await addProject(formData.title, formData.description, img, path);
+          await addProject(
+            formData.title,
+            formData.description,
+            img,
+            formData.liveLink,
+            path
+          );
           toast.success("Project Added Successfully", {
             id: loadingToastId,
           });
@@ -171,6 +181,21 @@ export function Form({
             </div>
           )}
         </LabelInputContainer>
+        {formType === "project" && (
+          <div className="pt-5">
+            <LabelInputContainer>
+              <Label htmlFor="liveLink">Live Project Link</Label>
+              <Input
+                id="liveLink"
+                placeholder="Add a Deployed Project Link..."
+                name="liveLink"
+                value={formData.liveLink}
+                type="text"
+                onChange={handleChange}
+              />
+            </LabelInputContainer>
+          </div>
+        )}
         <div className="pt-5">
           <button
             className="bg-gradient-to-br relative group/btn  block bg-black-300 w-full text-white rounded-md h-10 font-medium"

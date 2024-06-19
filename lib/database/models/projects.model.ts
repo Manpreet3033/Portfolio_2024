@@ -13,11 +13,15 @@ const ProjectSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  liveLink: {
+    type: String,
+    required: true,
+  },
   type: {
     type: String,
     default: "projects",
   },
 });
 
-export default mongoose.models.Project ||
-  mongoose.model("Project", ProjectSchema);
+export default mongoose.models.Projects ||
+  mongoose.model("Projects", ProjectSchema);

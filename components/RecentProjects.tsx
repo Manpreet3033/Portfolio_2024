@@ -1,35 +1,41 @@
-import { projects } from "@/data";
 import React from "react";
 import { PinContainer } from "./ui/PinContainer";
-import { title } from "process";
 import { FaLocationArrow } from "react-icons/fa";
-import MagicButton from "./ui/MagicButton";
 import { AnimatedTooltip } from "@/components/ui/AnimatedToolTip";
+import { getAllProjects } from "@/lib/actions/projects.action";
+import { title } from "process";
+import link from "next/link";
 
-const RecentProjects = () => {
+const RecentProjects = async () => {
+  const data = await getAllProjects();
+  const projects = data.allProjects;
   return (
     <div className="py-20" id="projects">
       <h1 className="heading text-blue-100">
         A small section of <span className="text-purple">recent projects</span>{" "}
       </h1>
       <div className="flex flex-wrap items-center justify-center p-4 gap-x-24 gap-y-8 mt-10 text-white">
-        {projects.map(({ id, title, des, img, iconLists, link }) => (
+        {projects.map(({ _id, title, description, imgUrl, liveLink }) => (
           <div
-            key={id}
+            key={_id}
             className="sm:h-[41rem] h-[32rem] lg:min-h-[32.5rem] flex items-center justify-center sm:w-[570px] w-[80vw]"
           >
-            <PinContainer title={"Visit"} href={link}>
+            <PinContainer title={"Visit"} href={liveLink}>
               <div className="relative flex items-center justify-center sm:w-[570px] w-[80vw] overflow-hidden sm:h-[40vh] h-[30vh] mb-10">
                 <div className="relative w-full h-full overflow-hidden lg:rounded-3xl">
                   <img src="/bg.png" alt="bg-img" />
                 </div>
-                <img src={img} alt={title} className="z-10 absolute b-0" />
+                <img
+                  src={imgUrl}
+                  alt={title}
+                  className="z-10 absolute b-0 object-fit"
+                />
               </div>
               <h1 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1">
                 {title}
               </h1>
-              <p className="lg:font-normal line-clamp-2 text-sm font-light lg:text-lg">
-                {des}
+              <p className="lg:font-normal line-clamp-3 text-sm font-light lg:text-lg">
+                {description}
               </p>
               <div className="flex items-center justify-between mt-7 mb3">
                 <div className="flex items-center">
@@ -46,11 +52,11 @@ const RecentProjects = () => {
                       />
                     </div>
                   ))} */}
-                  <AnimatedTooltip items={iconLists} />
+                  {/* <AnimatedTooltip items={iconLists} /> */}
                 </div>
                 <div className="flex justify-center items-center">
                   <a
-                    href={link}
+                    href={liveLink}
                     className="flex lg:text-xl md:text-xs text-sm text-purple"
                   >
                     Check Live Site

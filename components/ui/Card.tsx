@@ -19,6 +19,7 @@ export const HoverEffect = ({
     _id: string;
     title: string;
     description?: string;
+    liveLink?: string;
     imgUrl?: string;
     quote?: string;
     name?: string;
@@ -97,6 +98,13 @@ export const HoverEffect = ({
             )}
             <CardTitle>{item.title}</CardTitle>
             <CardDescription>{item.description || item.quote}</CardDescription>
+            {item.type === "projects" && (
+              <div className="flex pt-5">
+                <a href={item.liveLink} className="font-bold text-blue-100">
+                  Visit Project
+                </a>
+              </div>
+            )}
             <div
               className={`flex w-full ${
                 item.type === "projects" || item.type === "work-experience"
