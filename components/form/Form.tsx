@@ -13,7 +13,6 @@ import {
   addWorkExperience,
   updateWorkExperience,
 } from "@/lib/actions/experience.action";
-import path from "path";
 
 export function Form({
   formType,
@@ -64,7 +63,7 @@ export function Form({
             img,
             path
           );
-          toast.success("Project Updated Successfully", {
+          toast.success("Experience Updated Successfully", {
             id: loadingToastId,
           });
           router.push(`/dashboard/work-experiences`);
@@ -120,7 +119,7 @@ export function Form({
   };
   return (
     <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-black-100">
-      <form className="my-8" onSubmit={handleSubmit}>
+      <form className={`my-8`} onSubmit={handleSubmit}>
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
           <LabelInputContainer>
             <Label htmlFor="title">Title</Label>
@@ -147,7 +146,11 @@ export function Form({
         </LabelInputContainer>
         <LabelInputContainer>
           <Label htmlFor="image">
-            {formType === "project" ? "Project Image" : "Experience Image"}
+            {formType === "project"
+              ? "Project Image"
+              : formType === "work-experience"
+              ? "Experience Image"
+              : "Profile Image"}
           </Label>
           <CldUploadWidget
             uploadPreset="awcutdlq"
@@ -196,6 +199,7 @@ export function Form({
             </LabelInputContainer>
           </div>
         )}
+
         <div className="pt-5">
           <button
             className="bg-gradient-to-br relative group/btn  block bg-black-300 w-full text-white rounded-md h-10 font-medium"

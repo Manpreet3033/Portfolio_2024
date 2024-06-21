@@ -13,6 +13,7 @@ export const InfiniteMovingCards = ({
     quote: string;
     name: string;
     title: string;
+    _id?: string;
   }[];
   direction?: "left" | "right";
   speed?: "fast" | "normal" | "slow";
@@ -86,7 +87,7 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item, idx) => (
           <li
-            className="w-[90vw] max-w-full relative rounded-2xl border border-b-0 flex-shrink-0 border-slate-700 p-5 md:p-16 md:w-[60vw]"
+            className="w-[90vw] max-w-full relative rounded-2xl border border-b-0 flex-shrink-0 border-slate-700 p-5 md:p-14 md:w-[60vw]"
             style={{
               background: "rgb(4,7,29)",
               backgroundColor:
@@ -102,10 +103,16 @@ export const InfiniteMovingCards = ({
               <span className=" relative z-20 leading-[1.6] text-white text-sm md:text-lg font-normal">
                 {item.quote}
               </span>
-              <div className="relative z-20 mt-6 flex flex-row items-center">
-                <span className="flex flex-col gap-1">
+              <div className="relative z-20 mt-8 flex flex-row items-center">
+                <span className="flex xs-devices:flex-col flex-row gap-1">
                   <div className="me-3">
-                    <img src="/profile.svg" alt="profile" />
+                    <img
+                      src={`https://api.dicebear.com/9.x/initials/svg?seed=${item.name}`}
+                      alt="profile"
+                      width={54}
+                      height={54}
+                      className="mt-1 rounded-full"
+                    />
                   </div>
                   <div className="flex flex-col gap-1">
                     <span className=" text-xl leading-[1.6] text-white font-bold">
