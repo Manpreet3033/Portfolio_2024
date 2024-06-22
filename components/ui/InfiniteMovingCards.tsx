@@ -76,14 +76,14 @@ export const InfiniteMovingCards = ({
     <div
       ref={containerRef}
       className={cn(
-        "scroller relative z-20  w-screen overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
+        "scroller relative z-20  w-screen overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
         className
       )}
     >
       <ul
         ref={scrollerRef}
         className={cn(
-          " flex min-w-full shrink-0 gap-16 py-4 w-max flex-nowrap",
+          "flex min-w-full shrink-0 gap-16 py-4 w-max flex-nowrap",
           start && "animate-scroll ",
           pauseOnHover && "hover:[animation-play-state:paused]"
         )}
@@ -91,7 +91,7 @@ export const InfiniteMovingCards = ({
         {items.length !== 0 &&
           items.map((item) => (
             <li
-              className="w-[90vw] max-w-full relative rounded-2xl border border-b-0 flex-shrink-0 border-slate-700 p-5 md:p-14 md:w-[60vw]"
+              className="w-[90vw] flex flex-col justify-between max-w-full relative rounded-2xl border min-h-full border-b-0 flex-shrink-0 border-slate-700 p-5 md:p-14 md:w-[60vw]"
               style={{
                 background: "rgb(4,7,29)",
                 backgroundColor:
@@ -107,28 +107,28 @@ export const InfiniteMovingCards = ({
                 <span className="break-words relative z-20 leading-[1.6] text-white text-sm md:text-lg font-normal">
                   {item.quote}
                 </span>
-                <div className="relative z-20 mt-8 flex flex-row items-center">
-                  <span className="flex xs-devices:flex-col flex-row gap-1">
-                    <div className="me-3">
-                      <img
-                        src={item.imgUrl}
-                        alt="profile"
-                        width={54}
-                        height={54}
-                        className="mt-1 rounded-full"
-                      />
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <span className=" text-xl leading-[1.6] text-white font-bold">
-                        {item.name}
-                      </span>
-                      <span className=" text-sm leading-[1.6] text-white-200 font-normal">
-                        {item.title}
-                      </span>
-                    </div>
-                  </span>
-                </div>
               </blockquote>
+              <div className="relative z-20 mt-8 flex flex-row items-center">
+                <span className="flex xs-devices:flex-col flex-row gap-1">
+                  <div className="me-3">
+                    <img
+                      src={item.imgUrl}
+                      alt="profile"
+                      width={54}
+                      height={54}
+                      className="mt-1 rounded-full"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <span className=" text-xl leading-[1.6] text-white font-bold">
+                      {item.name}
+                    </span>
+                    <span className=" text-sm leading-[1.6] text-white-200 font-normal">
+                      {item.title}
+                    </span>
+                  </div>
+                </span>
+              </div>
             </li>
           ))}
       </ul>
