@@ -122,7 +122,7 @@ export const HoverEffect = ({
                 <div className="flex items-center">
                   <div className="me-3 xs-devices:hidden block">
                     <img
-                      src="/profile.svg"
+                      src={item.imgUrl}
                       alt="profile"
                       width={35}
                       height={35}
