@@ -8,6 +8,7 @@ import animationData from "@/data/confetti.json";
 import MagicButton from "./MagicButton";
 import { IoCopyOutline } from "react-icons/io5";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 export const BentoGrid = ({
   className,
@@ -57,10 +58,10 @@ export const BentoGridItem = ({
           setCopied(true);
         })
         .catch((error) => {
-          console.error("Failed to copy email:", error);
+          toast.error("Failed to copy email:", error);
         });
     } else {
-      console.error("Clipboard API not supported");
+      toast.error("Clipboard API not supported");
     }
   };
 
@@ -83,6 +84,7 @@ export const BentoGridItem = ({
               src={img}
               alt={img}
               className={cn(imgClassName, "object-cover object-center ")}
+              loading="lazy"
             />
           )}
         </div>
@@ -97,6 +99,7 @@ export const BentoGridItem = ({
               alt={spareImg}
               //   width={220}
               className="object-cover object-center w-full h-full"
+              loading="lazy"
             />
           )}
         </div>

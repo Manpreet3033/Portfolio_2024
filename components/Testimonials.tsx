@@ -20,6 +20,7 @@ import Spinner from "./common/Spinner";
 import { sendEmail } from "@/utils/helpers/nodemailer";
 import { addTestimonial } from "@/lib/actions/testimonials.actions";
 import { usePathname } from "next/navigation";
+import toast from "react-hot-toast";
 
 interface TestimonialType {
   _id: string;
@@ -102,15 +103,17 @@ const Testimonials = ({
       }));
       return;
     }
-
     setIsLoading(true);
     try {
-      // Assuming `addTestimonial` and `sendEmail` functions are correctly implemented
+      const loadingToastId = toast.loading("Processing your request...");
       await addTestimonial(name, company, review, path);
       await sendEmail(name, company, review, email);
-      setIsDialogOpen(false); // Close dialog after successful submission
+      setIsDialogOpen(false);
+      toast.success("Testimonial Submitted Successfully", {
+        id: loadingToastId,
+      });
     } catch (error) {
-      console.error("Error submitting testimonial:", error);
+      toast.error("Error Submitting Testimonial");
     }
     setIsLoading(false);
   };
@@ -257,8 +260,18 @@ const Testimonials = ({
         <div className="flex flex-wrap items-center justify-center gap-4 md:gap-16 mt-5">
           {companies.map(({ id, img, name, nameImg }) => (
             <div key={id} className="flex md:max-w-60 max-w-32 gap-2">
-              <img src={img} alt={name} className="md:w-10 w-5 " />
-              <img src={nameImg} alt={name} className="md:w-24 w-20 " />
+              <img
+                src={img}
+                alt={name}
+                className="md:w-10 w-5 "
+                loading="lazy"
+              />
+              <img
+                src={nameImg}
+                alt={name}
+                className="md:w-24 w-20 "
+                loading="lazy"
+              />
             </div>
           ))}
         </div>

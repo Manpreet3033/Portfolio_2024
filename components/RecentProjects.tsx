@@ -1,10 +1,7 @@
 import React from "react";
 import { PinContainer } from "./ui/PinContainer";
 import { FaLocationArrow } from "react-icons/fa";
-import { AnimatedTooltip } from "@/components/ui/AnimatedToolTip";
 import { getAllProjects } from "@/lib/actions/projects.action";
-import { title } from "process";
-import link from "next/link";
 
 const RecentProjects = async () => {
   const data = await getAllProjects();
@@ -29,6 +26,7 @@ const RecentProjects = async () => {
                   src={imgUrl}
                   alt={title}
                   className="z-10 absolute b-0 object-fit"
+                  loading="lazy"
                 />
               </div>
               <h1 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1">

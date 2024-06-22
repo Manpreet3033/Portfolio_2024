@@ -2,6 +2,7 @@
 import { cn } from "@/utils/cn";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import React, { useMemo, useRef } from "react";
+import toast from "react-hot-toast";
 import * as THREE from "three";
 
 export const CanvasRevealEffect = ({
@@ -242,7 +243,7 @@ const ShaderMaterial = ({
           };
           break;
         default:
-          console.error(`Invalid uniform type for '${uniformName}'.`);
+          toast.error(`Invalid uniform type for '${uniformName}'.`);
           break;
       }
     }

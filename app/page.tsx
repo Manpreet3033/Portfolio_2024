@@ -1,40 +1,23 @@
-import dynamic from "next/dynamic";
 import Hero from "@/components/Hero";
 import { FloatingNav } from "@/components/ui/FloatingNav";
 import { navItems } from "@/data";
-// import RecentProjects from "@/components/RecentProjects";
-// import Testimonials from "@/components/Testimonials";
-// import Experience from "@/components/Experience";
-// import MyApproach from "@/components/MyApproach";
-// import Footer from "@/components/Footer";
+import RecentProjects from "@/components/RecentProjects";
+import Testimonials from "@/components/Testimonials";
+import Experience from "@/components/Experience";
+import MyApproach from "@/components/MyApproach";
+import Footer from "@/components/Footer";
 import { getAllVerifiedTestimonials } from "@/lib/actions/testimonials.actions";
 import Script from "next/script";
+import dynamic from "next/dynamic";
 import Spinner from "@/components/common/Spinner";
 
-const DynamicGrid = dynamic(() => import("@/components/Grid"), {
+const Grid = dynamic(() => import("@/components/Grid"), {
   ssr: false,
-  loading: () => <Spinner />,
-});
-
-const RecentProjects = dynamic(() => import("@/components/RecentProjects"), {
-  ssr: false,
-  loading: () => <Spinner />,
-});
-const Testimonials = dynamic(() => import("@/components/Testimonials"), {
-  ssr: false,
-  loading: () => <Spinner />,
-});
-const Experience = dynamic(() => import("@/components/Experience"), {
-  ssr: false,
-  loading: () => <Spinner />,
-});
-const MyApproach = dynamic(() => import("@/components/MyApproach"), {
-  ssr: false,
-  loading: () => <Spinner />,
-});
-const Footer = dynamic(() => import("@/components/Footer"), {
-  ssr: false,
-  loading: () => <Spinner />,
+  loading: () => (
+    <div className="flex justify-center items-center">
+      <Spinner />
+    </div>
+  ),
 });
 
 export default async function Home() {
@@ -49,7 +32,7 @@ export default async function Home() {
       <div className="max-w-7xl w-full">
         <FloatingNav navItems={navItems} />
         <Hero />
-        <DynamicGrid />
+        <Grid />
         <RecentProjects />
         <Testimonials testimonials={testimonials} />
         <Experience />

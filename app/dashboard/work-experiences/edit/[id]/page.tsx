@@ -1,6 +1,5 @@
 import { Form } from "@/components/form/Form";
 import { getWorkExperienceById } from "@/lib/actions/experience.action";
-import console from "console";
 import React from "react";
 
 const page = async ({ params }: { params: { id: string } }) => {

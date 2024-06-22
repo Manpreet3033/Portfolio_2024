@@ -51,12 +51,8 @@ export function Form({
     }));
   }
   const path = usePathname();
-  useEffect(() => {
-    console.log(verified);
-  }, [verified]);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted");
     const loadingToastId = toast.loading("Processing...");
     try {
       if (type === "edit") {
@@ -119,7 +115,6 @@ export function Form({
       toast.error(err.message, {
         id: loadingToastId,
       });
-      console.log(err.message);
     }
   };
   return (

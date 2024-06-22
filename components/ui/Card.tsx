@@ -51,7 +51,6 @@ export const HoverEffect = ({
         });
       }
     } catch (error: any) {
-      console.log(error.message);
       toast.error(error.message, {
         id: toastId,
       });

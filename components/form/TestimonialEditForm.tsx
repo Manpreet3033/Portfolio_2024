@@ -31,7 +31,7 @@ const TestimonialEditForm = ({
         id: loadingToastId,
       });
     } catch (error: any) {
-      console.log(error.message);
+      toast.error(error.message);
     }
     router.push(`/dashboard/testimonials`);
   };
