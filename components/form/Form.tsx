@@ -5,7 +5,6 @@ import { Input } from "../ui/input";
 import { toast } from "react-hot-toast";
 import { cn } from "@/utils/cn";
 import { TextArea } from "../ui/textarea";
-import Image from "next/image";
 import { CldUploadWidget } from "next-cloudinary";
 import { addProject, updateProject } from "@/lib/actions/projects.action";
 import { usePathname, useRouter } from "next/navigation";
@@ -238,7 +237,7 @@ export function Form({
               {(imgUrl != undefined || img !== undefined) && (
                 <div className="flex justify-center items-center">
                   {/* @ts-ignore */}
-                  <Image
+                  <img
                     src={img || imgUrl}
                     alt="image"
                     width={200}
