@@ -7,9 +7,11 @@ import Testimonials from "@/components/Testimonials";
 import Experience from "@/components/Experience";
 import MyApproach from "@/components/MyApproach";
 import Footer from "@/components/Footer";
-import { connectToDatabase } from "@/lib/database/mongoose";
+import { getAllVerifiedTestimonials } from "@/lib/actions/testimonials.actions";
 
-export default function Home() {
+export default async function Home() {
+  const data = await getAllVerifiedTestimonials();
+  const testimonials = data.allTestimonials;
   return (
     <main
       className="relative flex justify-center items-center 
@@ -20,7 +22,7 @@ export default function Home() {
         <Hero />
         <Grid />
         <RecentProjects />
-        <Testimonials />
+        <Testimonials testimonials={testimonials} />
         <Experience />
         <MyApproach />
         <Footer />

@@ -16,6 +16,10 @@ const TestimonialsSchema = new mongoose.Schema({
   imgUrl: {
     type: String,
   },
+  verified: {
+    type: Boolean,
+    default: false,
+  },
   type: {
     type: String,
     default: "testimonials",

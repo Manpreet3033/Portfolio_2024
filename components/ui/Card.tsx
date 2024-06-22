@@ -1,6 +1,7 @@
 "use client";
 import { deleteExperience } from "@/lib/actions/experience.action";
 import { deleteProject } from "@/lib/actions/projects.action";
+import { deleteTestimonial } from "@/lib/actions/testimonials.actions";
 import { cn } from "@/utils/cn";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
@@ -41,6 +42,11 @@ export const HoverEffect = ({
       } else if (item && item.type === "work-experience") {
         await deleteExperience({ id: id, path: path });
         toast.success("Experience Delete Successfully", {
+          id: toastId,
+        });
+      } else if (item && item.type === "testimonials") {
+        await deleteTestimonial(id, path);
+        toast.success("Testimonial Deleted Successfully", {
           id: toastId,
         });
       }
