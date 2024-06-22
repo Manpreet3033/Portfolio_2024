@@ -4,7 +4,6 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import { ThemeProvider } from "@/app/provider";
-import { dark, neobrutalism } from "@clerk/themes";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,7 +11,7 @@ export const metadata: Metadata = {
   title: "Manpreet's Portfolio",
   description: "Modern & Minimal Portfolio Design",
   icons: {
-    icon: "/next.svg",
+    icon: "/pf_logo.png",
   },
 };
 
@@ -31,7 +30,7 @@ export default function RootLayout({
     >
       <html lang="en" suppressHydrationWarning>
         <head>
-          <link rel="icon" href="/jsm-logo.png" sizes="any" />
+          <link rel="icon" href="/pf_logo.png" sizes="any" />
         </head>
         <body className={`${inter.className}`}>
           <ThemeProvider
