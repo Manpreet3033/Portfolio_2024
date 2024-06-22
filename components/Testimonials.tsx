@@ -125,7 +125,7 @@ const Testimonials = ({
           <InfiniteMovingCards
             items={testimonials}
             direction="right"
-            speed="slow"
+            speed="normal"
           />
         ) : (
           <h2 className="py-8 font-bold text-3xl text-blue-100">

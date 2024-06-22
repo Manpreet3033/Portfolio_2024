@@ -73,7 +73,7 @@ export function Form({
             id: loadingToastId,
           });
           router.push(`/dashboard/work-experiences`);
-        } else if (formType === "work-experience") {
+        } else if (formType === "project") {
           await updateProject(
             //@ts-ignore
             _id,
@@ -86,12 +86,6 @@ export function Form({
             id: loadingToastId,
           });
           router.push(`/dashboard/projects`);
-        } else {
-          await editTestimonial(_id, verified);
-          toast.success("Testimonial Updated Successfully", {
-            id: loadingToastId,
-          });
-          router.push(`/dashboard/testimonials`);
         }
       } else {
         if (formType === "project") {
@@ -119,7 +113,6 @@ export function Form({
           router.push(`/dashboard/work-experiences`);
         }
       }
-
       setFormData(initialState);
       setImg(undefined);
     } catch (err: any) {
@@ -132,152 +125,94 @@ export function Form({
   return (
     <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-black-100">
       <form className={`my-8`} onSubmit={handleSubmit}>
-        {formType === "testimonials" && (
-          <div className="mt-8">
-            <div className="flex justify-center items-center mb-4">
-              <LabelInputContainer className="text-center">
-                <h2 className="font-bold text-blue-100 text-lg">
-                  <span>Name: </span>
-                  <span className="font-normal">{name}</span>
-                </h2>
-              </LabelInputContainer>
-            </div>
-            <div className="flex justify-center items-center mb-4">
-              <LabelInputContainer className="text-center">
-                <h2 className="font-bold text-blue-100 text-lg">
-                  <span>Company Name: </span>
-                  <span className="font-normal">{title}</span>
-                </h2>
-              </LabelInputContainer>
-            </div>
-            <div className="flex justify-center items-center">
-              <LabelInputContainer className="text-center">
-                <h2 className="font-bold text-blue-100 text-lg">
-                  <span>Review: </span>
-                  <span className="break-words font-normal">{description}</span>
-                </h2>
-              </LabelInputContainer>
-            </div>
-            <div className="flex justify-center pt-5 items-center">
-              <LabelInputContainer className="text-center">
-                <h2 className="font-bold text-blue-100 text-lg">
-                  <span>Verified: </span>
-                  <select
-                    className="px-3 py-2 border rounded-md  shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    value={verified}
-                    onChange={(e) => setVerified(e.target.value)}
-                  >
-                    <option value="false">False</option>
-                    <option value="true">True</option>
-                  </select>
-                </h2>
-              </LabelInputContainer>
-            </div>
+        <>
+          <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
+            <LabelInputContainer>
+              <Label htmlFor="title">Title</Label>
+              <Input
+                id="title"
+                placeholder="Add a Title..."
+                name="title"
+                value={formData.title}
+                type="text"
+                onChange={handleChange}
+              />
+            </LabelInputContainer>
           </div>
-        )}
-        {formType !== "testimonials" && (
-          <>
-            <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="description">Description</Label>
+            <TextArea
+              id="description"
+              value={formData.description}
+              placeholder="Add a Description..."
+              rows={5}
+              name="description"
+              onChange={handleChange}
+            />
+          </LabelInputContainer>
+          <LabelInputContainer>
+            <Label htmlFor="image">
+              {formType === "project"
+                ? "Project Image"
+                : formType === "work-experience"
+                ? "Experience Image"
+                : "Profile Image"}
+            </Label>
+            <CldUploadWidget
+              uploadPreset="awcutdlq"
+              onSuccess={(result, { widget }) => {
+                /*@ts-ignore*/
+                if (result?.info?.secure_url) {
+                  /*@ts-ignore*/
+                  setImg(result.info.secure_url);
+                }
+              }}
+            >
+              {({ open }) => {
+                return (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      open();
+                    }}
+                    className="bg-black-300 py-2 rounded-lg text-blue-100"
+                  >
+                    {imgUrl ? "Upload a New Image" : "Upload an Image"}
+                  </button>
+                );
+              }}
+            </CldUploadWidget>
+            {(imgUrl != undefined || img !== undefined) && (
+              <div className="flex justify-center items-center">
+                {/* @ts-ignore */}
+                <img src={img || imgUrl} alt="image" width={200} height={200} />
+              </div>
+            )}
+          </LabelInputContainer>
+          {formType === "project" && (
+            <div className="pt-5">
               <LabelInputContainer>
-                <Label htmlFor="title">Title</Label>
+                <Label htmlFor="liveLink">Live Project Link</Label>
                 <Input
-                  id="title"
-                  placeholder="Add a Title..."
-                  name="title"
-                  value={formData.title}
+                  id="liveLink"
+                  placeholder="Add a Deployed Project Link..."
+                  name="liveLink"
+                  value={formData.liveLink}
                   type="text"
                   onChange={handleChange}
                 />
               </LabelInputContainer>
             </div>
-            <LabelInputContainer className="mb-4">
-              <Label htmlFor="description">Description</Label>
-              <TextArea
-                id="description"
-                value={formData.description}
-                placeholder="Add a Description..."
-                rows={5}
-                name="description"
-                onChange={handleChange}
-              />
-            </LabelInputContainer>
-            <LabelInputContainer>
-              <Label htmlFor="image">
-                {formType === "project"
-                  ? "Project Image"
-                  : formType === "work-experience"
-                  ? "Experience Image"
-                  : "Profile Image"}
-              </Label>
-              <CldUploadWidget
-                uploadPreset="awcutdlq"
-                onSuccess={(result, { widget }) => {
-                  /*@ts-ignore*/
-                  if (result?.info?.secure_url) {
-                    /*@ts-ignore*/
-                    setImg(result.info.secure_url);
-                  }
-                }}
-              >
-                {({ open }) => {
-                  return (
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        open();
-                      }}
-                      className="bg-black-300 py-2 rounded-lg text-blue-100"
-                    >
-                      {imgUrl ? "Upload a New Image" : "Upload an Image"}
-                    </button>
-                  );
-                }}
-              </CldUploadWidget>
-              {(imgUrl != undefined || img !== undefined) && (
-                <div className="flex justify-center items-center">
-                  {/* @ts-ignore */}
-                  <img
-                    src={img || imgUrl}
-                    alt="image"
-                    width={200}
-                    height={200}
-                  />
-                </div>
-              )}
-            </LabelInputContainer>
-            {formType === "project" && (
-              <div className="pt-5">
-                <LabelInputContainer>
-                  <Label htmlFor="liveLink">Live Project Link</Label>
-                  <Input
-                    id="liveLink"
-                    placeholder="Add a Deployed Project Link..."
-                    name="liveLink"
-                    value={formData.liveLink}
-                    type="text"
-                    onChange={handleChange}
-                  />
-                </LabelInputContainer>
-              </div>
-            )}
-          </>
-        )}
-        <div className="pt-5">
+          )}
+        </>
+
+        <div className="flex justify-center mt-6">
           <button
-            className="bg-gradient-to-br relative group/btn  block bg-black-300 w-full text-white rounded-md h-10 font-medium"
             type="submit"
+            className="px-6 py-2 bg-blue-600 w-full text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            {formType === "project"
-              ? type === "edit"
-                ? "Edit Project"
-                : "Add Project"
-              : formType === "work-experience"
-              ? type === "edit"
-                ? "Edit Experience"
-                : "Add Experience"
-              : "Edit Testimonial"}
-            <BottomGradient />
+            {type === "edit" ? "Save Changes" : "Submit Details"}
           </button>
         </div>
       </form>

@@ -104,7 +104,7 @@ export const FloatingNav = ({
             position="left"
             handleClick={navigateToDashboard}
           />
-          <div className="block max-sm:hidden">
+          <div className="max-sm:hidden inline-block">
             <UserButton />
           </div>
         </SignedIn>
