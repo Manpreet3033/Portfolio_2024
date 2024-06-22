@@ -9,6 +9,8 @@ interface CardArray {
   imgUrl?: string;
   name?: string;
   type?: string;
+  email?: string;
+  message?: string;
 }
 
 export function CardHoverEffectDemo({ items }: { items: CardArray[] }) {

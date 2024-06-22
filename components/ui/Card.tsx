@@ -4,6 +4,7 @@ import { deleteProject } from "@/lib/actions/projects.action";
 import { deleteTestimonial } from "@/lib/actions/testimonials.actions";
 import { cn } from "@/utils/cn";
 import { AnimatePresence, motion } from "framer-motion";
+import { wrap } from "module";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import path from "path";
@@ -25,6 +26,8 @@ export const HoverEffect = ({
     quote?: string;
     name?: string;
     type?: string;
+    email?: string;
+    message?: string;
   }[];
   className?: string;
 }) => {
@@ -131,7 +134,40 @@ export const HoverEffect = ({
                   <CardName>{item.name}</CardName>
                 </div>
               )}
-              <div className="flex gap-3 items-center justify-center">
+              <div className="flex flex-col break-words overflow-y-auto gap-4">
+                {item.type !== "testimonials" && (
+                  <>
+                    {item.type === undefined && (
+                      <span className="font-bold text-blue-100">
+                        Name: {item.name}
+                      </span>
+                    )}
+                  </>
+                )}
+                {item.type !== "testimonials" && (
+                  <>
+                    {item.type === undefined && (
+                      <span className="font-bold text-blue-100">Email: </span>
+                    )}
+                    <CardName>{item.email}</CardName>
+                  </>
+                )}
+                {item.type !== "testimonials" && (
+                  <>
+                    {item.type === undefined && (
+                      <span className="font-bold text-blue-100">Message: </span>
+                    )}
+                    <CardDescription className="text-blue-100 mt-0 pb-5">
+                      {item.message}
+                    </CardDescription>
+                  </>
+                )}
+              </div>
+              <div
+                className={`${
+                  item.type === undefined ? "hidden" : "flex"
+                } gap-3 items-center justify-center`}
+              >
                 <Link
                   href={
                     item.type === "projects"
@@ -208,7 +244,10 @@ export const CardTitle = ({
   children: React.ReactNode;
 }) => {
   return (
-    <h4 className={cn("text-blue-100 font-bold tracking-wide mt-4", className)}>
+    <h4
+      className={cn("text-blue-100 font-bold tracking-wide mt-4", className)}
+      style={{ overflowWrap: "break-word" }}
+    >
       {children}
     </h4>
   );
@@ -223,7 +262,7 @@ export const CardDescription = ({
   return (
     <p
       className={cn(
-        "mt-8 text-zinc-400 tracking-wide leading-relaxed text-sm",
+        "mt-8 text-zinc-400 tracking-wide leading-relaxed text-sm break-words",
         className
       )}
     >

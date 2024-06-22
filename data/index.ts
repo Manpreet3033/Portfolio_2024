@@ -341,4 +341,9 @@ export const sidebarLinks = [
     route: "/dashboard/work-experiences",
     label: "Work Experience",
   },
+  {
+    imgURL: "/contact.svg",
+    route: "/dashboard/contacts",
+    label: "Contacts",
+  },
 ];
