@@ -126,6 +126,7 @@ export const HoverEffect = ({
                       alt="profile"
                       width={35}
                       height={35}
+                      className="rounded-full"
                     />
                   </div>
                   <CardName>{item.name}</CardName>
