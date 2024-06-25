@@ -13,6 +13,7 @@ import {
   updateWorkExperience,
 } from "@/lib/actions/experience.action";
 import { editTestimonial } from "@/lib/actions/testimonials.actions";
+import Image from "next/image";
 
 export function Form({
   formType,
@@ -181,7 +182,13 @@ export function Form({
             {(imgUrl != undefined || img !== undefined) && (
               <div className="flex justify-center items-center">
                 {/* @ts-ignore */}
-                <img src={img || imgUrl} alt="image" width={200} height={200} />
+                <Image
+                  // @ts-ignore
+                  src={img || imgUrl}
+                  alt="image"
+                  width={200}
+                  height={200}
+                />
               </div>
             )}
           </LabelInputContainer>

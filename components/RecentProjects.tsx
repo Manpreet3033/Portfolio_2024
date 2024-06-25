@@ -2,6 +2,7 @@ import React from "react";
 import { PinContainer } from "./ui/PinContainer";
 import { FaLocationArrow } from "react-icons/fa";
 import { getAllProjects } from "@/lib/actions/projects.action";
+import Image from "next/image";
 
 const RecentProjects = async () => {
   const data = await getAllProjects();
@@ -20,13 +21,21 @@ const RecentProjects = async () => {
             <PinContainer title={"Visit"} href={liveLink}>
               <div className="relative flex items-center justify-center sm:w-[570px] w-[80vw] overflow-hidden sm:h-[40vh] h-[30vh] mb-10">
                 <div className="relative w-full h-full overflow-hidden lg:rounded-3xl">
-                  <img src="/bg.png" alt="bg-img" />
+                  <Image
+                    src="/bg.png"
+                    alt="bg-img"
+                    width={100}
+                    height={100}
+                    className="w-full h-full"
+                    loading="lazy"
+                  />
                 </div>
-                <img
+                <Image
                   src={imgUrl}
                   alt={title}
-                  className="z-10 absolute b-0 object-fit"
-                  loading="lazy"
+                  className="z-10 absolute b-0 object-fit w-full h-full"
+                  width={600}
+                  height={600}
                 />
               </div>
               <h1 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1">
@@ -36,22 +45,7 @@ const RecentProjects = async () => {
                 {description}
               </p>
               <div className="flex items-center justify-between mt-7 mb3">
-                <div className="flex items-center">
-                  {/* {iconLists.map((icon, index) => (
-                    <div
-                      key={id}
-                      className="border rounded-full border-white/[0.2]"
-                      style={{ transform: `translateX(-${4 * index * 2}px)` }}
-                    >
-                      <img
-                        src={icon}
-                        alt={icon}
-                        className="p-2 rounded-full bg-blue-100 lg:w-10 lg:h-10 w-8 h-8 flex justify-center items-center"
-                      />
-                    </div>
-                  ))} */}
-                  {/* <AnimatedTooltip items={iconLists} /> */}
-                </div>
+                <div className="flex items-center"></div>
                 <div className="flex justify-center items-center">
                   <a
                     href={liveLink}

@@ -1,5 +1,6 @@
 "use client";
 import { editTestimonial } from "@/lib/actions/testimonials.actions";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
@@ -42,10 +43,13 @@ const TestimonialEditForm = ({
       className="max-w-xl mx-auto p-6 bg-black-100 shadow-md rounded-lg space-y-6"
     >
       <div className="text-center mb-4">
-        <img
+        <Image
           src={imgUrl}
           alt={name}
           className="w-24 h-24 rounded-full mx-auto"
+          loading="lazy"
+          width={100}
+          height={100}
         />
       </div>
       <div className="text-center">

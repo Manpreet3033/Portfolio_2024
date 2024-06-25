@@ -1,12 +1,13 @@
 import React from "react";
 import { Button } from "./ui/MovingBorder";
 import { getAllWorkExperience } from "@/lib/actions/experience.action";
+import Image from "next/image";
 
 const Experience = async () => {
   const data = await getAllWorkExperience();
   const workExperience = data.allExperiences;
   return (
-    <div className="py-20" id="testimonials">
+    <div className="pt-10 pb-20" id="testimonials">
       <h1 className="heading text-blue-100">
         My <span className="text-purple"> work experience</span>{" "}
       </h1>
@@ -19,9 +20,12 @@ const Experience = async () => {
             duration={Math.floor(Math.random() * 10000) + 10000}
           >
             <div className="flex lg:flex-row flex-col lg:items-center p-3 py-6 md:p-5 lg:p-10 gap-2">
-              <img
+              <Image
                 src={card.imgUrl}
                 alt={card.title}
+                loading="lazy"
+                width={32}
+                height={32}
                 className="lg:w-32 md:w-20 w-16"
               />
               <div className="lg:ms-5">

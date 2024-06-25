@@ -21,6 +21,7 @@ import { sendEmail } from "@/utils/helpers/nodemailer";
 import { addTestimonial } from "@/lib/actions/testimonials.actions";
 import { usePathname } from "next/navigation";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 interface TestimonialType {
   _id: string;
@@ -257,21 +258,24 @@ const Testimonials = ({
             </DialogContent>
           </Dialog>
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-4 md:gap-16 mt-5">
-          {companies.map(({ id, img, name, nameImg }) => (
-            <div key={id} className="flex md:max-w-60 max-w-32 gap-2">
-              <img
+        <h2 className="heading pt-20">
+          My <span className="text-purple">Internships</span>
+        </h2>
+        <div className="flex flex-wrap pt-8 items-center justify-center gap-4 md:gap-16 mt-5">
+          {companies.map(({ id, img, name }) => (
+            <div
+              key={id}
+              className="flex items-center md:max-w-60 max-w-32 gap-2"
+            >
+              <Image
                 src={img}
                 alt={name}
-                className="md:w-10 w-5 "
+                className="md:w-12 md:h-12 xs-devices:w-10 xs-devices:h-10 w-10 h-10 mix-blend-normal rounded-lg"
                 loading="lazy"
+                width={30}
+                height={30}
               />
-              <img
-                src={nameImg}
-                alt={name}
-                className="md:w-24 w-20 "
-                loading="lazy"
-              />
+              <p className="font-bold">{name}</p>
             </div>
           ))}
         </div>

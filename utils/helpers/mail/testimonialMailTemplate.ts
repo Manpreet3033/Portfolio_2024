@@ -69,8 +69,6 @@ export function testimonialsMail(name: string): string {
     `;
 }
 
-// <img src="your-logo-url.png" alt="Company Logo">
-
 export function adminTestimonialsMail(
   name: string,
   company: string,

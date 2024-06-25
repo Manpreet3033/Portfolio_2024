@@ -5,6 +5,7 @@ import { deleteTestimonial } from "@/lib/actions/testimonials.actions";
 import { cn } from "@/utils/cn";
 import { AnimatePresence, motion } from "framer-motion";
 import { wrap } from "module";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import path from "path";
@@ -95,12 +96,21 @@ export const HoverEffect = ({
             {(item.type === "projects" || item.type === "work-experience") && (
               <div className="relative flex items-center justify-center overflow-hidden h-52 mb-10">
                 <div className="relative w-full h-full overflow-hidden lg:rounded-3xl">
-                  <img src="/bg.png" alt="bg-img" />
+                  <Image
+                    src="/bg.png"
+                    alt="bg-img"
+                    className="h-full w-full"
+                    width={100}
+                    height={100}
+                  />
                 </div>
-                <img
+                <Image
+                  //@ts-ignore
                   src={item.imgUrl}
                   alt={item.title}
-                  className="z-10 absolute b-0 object-cover"
+                  width={600}
+                  height={600}
+                  className="z-10 absolute b-0 object-fit h-full w-full"
                 />
               </div>
             )}
@@ -123,7 +133,8 @@ export const HoverEffect = ({
               {item.type === "testimonials" && (
                 <div className="flex items-center">
                   <div className="me-3 xs-devices:hidden block">
-                    <img
+                    <Image
+                      //@ts-ignore
                       src={item.imgUrl}
                       alt="profile"
                       width={35}

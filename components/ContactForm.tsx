@@ -20,7 +20,7 @@ const initialState = {
   message: "",
 };
 
-export function SignupFormDemo() {
+export function ContactForm() {
   const [formData, setFormData] = useState<FormDataProps>(initialState);
   const [errors, setErrors] = useState<Partial<FormDataProps>>({});
 

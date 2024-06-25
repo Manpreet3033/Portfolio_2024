@@ -5,6 +5,7 @@ const nextConfig = {
     serverComponentsExternalPackages: ["mongoose"],
   },
   images: {
+    dangerouslyAllowSVG: true,
     domains: ["res.cloudinary.com", "api.dicebear.com"],
     remotePatterns: [
       {
