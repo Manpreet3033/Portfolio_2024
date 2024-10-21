@@ -10,7 +10,8 @@ const RecentProjects = async () => {
   return (
     <div className="py-20" id="projects">
       <h1 className="heading text-blue-100">
-        A small section of <span className="text-purple">recent projects</span>{" "}
+        A small section of my{" "}
+        <span className="text-purple">recent projects</span>{" "}
       </h1>
       <div className="flex flex-wrap items-center justify-center p-4 gap-x-24 gap-y-8 mt-10 text-white">
         {projects.map(({ _id, title, description, imgUrl, liveLink }) => (

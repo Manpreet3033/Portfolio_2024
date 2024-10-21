@@ -9,7 +9,7 @@ const Experience = async () => {
   return (
     <div className="pt-10 pb-20" id="testimonials">
       <h1 className="heading text-blue-100">
-        My <span className="text-purple"> work experience</span>{" "}
+        My <span className="text-purple"> Work experience</span>{" "}
       </h1>
       <div className="w-full mt-12 grid lg:grid-cols-4 grid-cols-1 gap-10">
         {workExperience.map((card) => (

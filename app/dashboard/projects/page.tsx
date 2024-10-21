@@ -12,41 +12,6 @@ interface ProjectArray {
   type?: string;
 }
 
-// const result: Array<ProjectArray> = [
-//   {
-//     id: 1,
-//     title: "3D Solar System Planets to Explore",
-//     description:
-//       "Explore the wonders of our solar system with this captivating 3D simulation of the planets using Three.js.",
-//     imgUrl: "/p1.svg",
-//     type: "projects",
-//   },
-//   {
-//     id: 2,
-//     title: "Yoom - Video Conferencing App",
-//     description:
-//       "Simplify your video conferencing experience with Yoom. Seamlessly connect with colleagues and friends.",
-//     imgUrl: "/p2.svg",
-//     type: "projects",
-//   },
-//   {
-//     id: 3,
-//     title: "AI Image SaaS - Canva Application",
-//     description:
-//       "A REAL Software-as-a-Service app with AI features and a payments and credits system using the latest tech stack.",
-//     imgUrl: "/p3.svg",
-//     type: "projects",
-//   },
-//   {
-//     id: 4,
-//     title: "AI Image SaaS - Canva Application",
-//     description:
-//       "A REAL Software-as-a-Service app with AI features and a payments and credits system using the latest tech stack.",
-//     imgUrl: "/p3.svg",
-//     type: "projects",
-//   },
-// ];
-
 const page = async () => {
   const data = await getAllProjects();
   const projects = data.allProjects;

@@ -258,7 +258,7 @@ const Testimonials = ({
             </DialogContent>
           </Dialog>
         </div>
-        <h2 className="heading pt-20">
+        <h2 className="heading pt-20 text-blue-100">
           My <span className="text-purple">Internships</span>
         </h2>
         <div className="flex flex-wrap pt-8 items-center justify-center gap-4 md:gap-16 mt-5">
@@ -275,7 +275,7 @@ const Testimonials = ({
                 width={30}
                 height={30}
               />
-              <p className="font-bold">{name}</p>
+              <p className="font-bold text-blue-100">{name}</p>
             </div>
           ))}
         </div>
