@@ -6,7 +6,17 @@ A personal portfolio showcasing my projects, skills, and work experience, built 
 
 ## About The Project
 
+### Home Page
+
 ![Home Page](public/homepage.png)
+
+### Alternative Home Page View
+
+![Home Page - Alternative](public/homepage2.png)
+
+### Dashboard Page
+
+![Dashboard Page](public/dashboard.png)
 
 This portfolio is designed to provide an online presence and showcase my development projects. The key technologies used are Next.js, MongoDB for backend storage, Clerk for authentication, and Cloudinary for image uploads and management.
 
