@@ -1,5 +1,6 @@
 "use client";
 import { deleteExperience } from "@/lib/actions/experience.action";
+import { deleteInternship } from "@/lib/actions/internship.actions";
 import { deleteProject } from "@/lib/actions/projects.action";
 import { deleteTestimonial } from "@/lib/actions/testimonials.actions";
 import { cn } from "@/utils/cn";
@@ -13,6 +14,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { FiEdit } from "react-icons/fi";
 import { MdDeleteOutline } from "react-icons/md";
+import { isReadable } from "stream";
 
 export const HoverEffect = ({
   items,
@@ -21,6 +23,7 @@ export const HoverEffect = ({
   items: {
     _id: string;
     title: string;
+    company?: string;
     description?: string;
     liveLink?: string;
     imgUrl?: string;
@@ -50,6 +53,11 @@ export const HoverEffect = ({
         });
       } else if (item && item.type === "testimonials") {
         await deleteTestimonial(id, path);
+        toast.success("Testimonial Deleted Successfully", {
+          id: toastId,
+        });
+      } else if (item && item.type === "internship") {
+        await deleteInternship({ id: id, path: path });
         toast.success("Testimonial Deleted Successfully", {
           id: toastId,
         });
@@ -93,7 +101,9 @@ export const HoverEffect = ({
             )}
           </AnimatePresence>
           <Card>
-            {(item.type === "projects" || item.type === "work-experience") && (
+            {(item.type === "projects" ||
+              item.type === "work-experience" ||
+              item.type === "internship") && (
               <div className="relative flex items-center justify-center overflow-hidden h-52 mb-10">
                 <div className="relative w-full h-full overflow-hidden lg:rounded-3xl">
                   <Image
@@ -107,14 +117,16 @@ export const HoverEffect = ({
                 <Image
                   //@ts-ignore
                   src={item.imgUrl}
-                  alt={item.title}
+                  alt={item.company != undefined ? item.company : item.title}
                   width={600}
                   height={600}
                   className="z-10 absolute b-0 object-fit h-full w-full"
                 />
               </div>
             )}
-            <CardTitle>{item.title}</CardTitle>
+            <CardTitle>
+              {item.company != undefined ? item.company : item.title}
+            </CardTitle>
             <CardDescription>{item.description || item.quote}</CardDescription>
             {item.type === "projects" && (
               <div className="flex pt-5">
@@ -185,6 +197,8 @@ export const HoverEffect = ({
                       ? `/dashboard/projects/edit/${item._id}`
                       : item.type === "testimonials"
                       ? `/dashboard/testimonials/edit/${item._id}`
+                      : item.type === "internship"
+                      ? `/dashboard/internships/edit/${item._id}`
                       : `/dashboard/work-experiences/edit/${item._id}`
                   }
                 >

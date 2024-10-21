@@ -22,6 +22,7 @@ import { addTestimonial } from "@/lib/actions/testimonials.actions";
 import { usePathname } from "next/navigation";
 import toast from "react-hot-toast";
 import Image from "next/image";
+import { getAllInternships } from "@/lib/actions/internship.actions";
 
 interface TestimonialType {
   _id: string;
@@ -32,11 +33,19 @@ interface TestimonialType {
   verified: boolean;
   type: string;
 }
+interface InternshipType {
+  _id: string;
+  company: string;
+  imgUrl: string;
+  type: string;
+}
 
 const Testimonials = ({
   testimonials,
+  internships,
 }: {
   testimonials: Array<TestimonialType>;
+  internships: Array<InternshipType>;
 }) => {
   const initialState = {
     name: "",
@@ -128,8 +137,8 @@ const Testimonials = ({
         {testimonials.length > 0 ? (
           <InfiniteMovingCards
             items={testimonials}
-            direction="right"
-            speed="fast"
+            direction="left"
+            speed="normal"
           />
         ) : (
           <h2 className="py-8 font-bold text-3xl text-blue-100">
@@ -262,20 +271,20 @@ const Testimonials = ({
           My <span className="text-purple">Internships</span>
         </h2>
         <div className="flex flex-wrap pt-8 items-center justify-center gap-4 md:gap-16 mt-5">
-          {companies.map(({ id, img, name }) => (
+          {internships.map(({ _id, imgUrl, company }) => (
             <div
-              key={id}
+              key={_id}
               className="flex items-center md:max-w-60 max-w-32 gap-2"
             >
               <Image
-                src={img}
-                alt={name}
+                src={imgUrl}
+                alt={company}
                 className="md:w-12 md:h-12 xs-devices:w-10 xs-devices:h-10 w-10 h-10 mix-blend-normal rounded-lg"
                 loading="lazy"
-                width={30}
-                height={30}
+                width={50}
+                height={50}
               />
-              <p className="font-bold text-blue-100">{name}</p>
+              <p className="font-bold text-blue-100">{company}</p>
             </div>
           ))}
         </div>

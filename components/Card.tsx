@@ -3,6 +3,7 @@ import { HoverEffect } from "./ui/Card";
 interface CardArray {
   _id: string;
   title: string;
+  company?: string;
   quote?: string;
   description?: string;
   liveLink?: string;

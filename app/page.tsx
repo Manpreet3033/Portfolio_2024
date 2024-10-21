@@ -10,6 +10,7 @@ import { getAllVerifiedTestimonials } from "@/lib/actions/testimonials.actions";
 import Script from "next/script";
 import dynamic from "next/dynamic";
 import Spinner from "@/components/common/Spinner";
+import { getAllInternships } from "@/lib/actions/internship.actions";
 
 const Grid = dynamic(() => import("@/components/Grid"), {
   ssr: false,
@@ -23,6 +24,8 @@ const Grid = dynamic(() => import("@/components/Grid"), {
 export default async function Home() {
   const data = await getAllVerifiedTestimonials();
   const testimonials = data.allTestimonials;
+  const internshipData = await getAllInternships();
+  const internships = internshipData.allInternships;
 
   return (
     <main
@@ -34,7 +37,7 @@ export default async function Home() {
         <Hero />
         <Grid />
         <RecentProjects />
-        <Testimonials testimonials={testimonials} />
+        <Testimonials testimonials={testimonials} internships={internships} />
         <Experience />
         <MyApproach />
         <Footer />

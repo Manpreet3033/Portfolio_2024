@@ -14,6 +14,10 @@ import {
 } from "@/lib/actions/experience.action";
 import { editTestimonial } from "@/lib/actions/testimonials.actions";
 import Image from "next/image";
+import {
+  addInternship,
+  updateInternship,
+} from "@/lib/actions/internship.actions";
 
 export function Form({
   formType,
@@ -41,7 +45,6 @@ export function Form({
   };
   const router = useRouter();
   const [formData, setFormData] = useState(initialState);
-  const [verified, setVerified] = useState("false");
   const [img, setImg] = useState<string | undefined>(imgUrl || undefined);
   function handleChange(
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -83,6 +86,18 @@ export function Form({
             id: loadingToastId,
           });
           router.push(`/dashboard/projects`);
+        } else if (formType === "internship") {
+          await updateInternship(
+            //@ts-ignore
+            _id,
+            formData.title,
+            img,
+            path
+          );
+          toast.success("Internship Updated Successfully", {
+            id: loadingToastId,
+          });
+          router.push(`/dashboard/internships`);
         }
       } else {
         if (formType === "project") {
@@ -108,6 +123,12 @@ export function Form({
             id: loadingToastId,
           });
           router.push(`/dashboard/work-experiences`);
+        } else if (formType === "internship") {
+          await addInternship(formData.title, img, path);
+          toast.success("Internship Added Successfully", {
+            id: loadingToastId,
+          });
+          router.push(`/dashboard/internships`);
         }
       }
       setFormData(initialState);
@@ -124,10 +145,16 @@ export function Form({
         <>
           <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
             <LabelInputContainer>
-              <Label htmlFor="title">Title</Label>
+              <Label htmlFor="title">
+                {formType === "internship" ? "Company" : "Title"}
+              </Label>
               <Input
                 id="title"
-                placeholder="Add a Title..."
+                placeholder={
+                  formType === "internship"
+                    ? "Company name..."
+                    : "Add a Title..."
+                }
                 name="title"
                 value={formData.title}
                 type="text"
@@ -135,23 +162,27 @@ export function Form({
               />
             </LabelInputContainer>
           </div>
-          <LabelInputContainer className="mb-4">
-            <Label htmlFor="description">Description</Label>
-            <TextArea
-              id="description"
-              value={formData.description}
-              placeholder="Add a Description..."
-              rows={5}
-              name="description"
-              onChange={handleChange}
-            />
-          </LabelInputContainer>
+          {formType !== "internship" && (
+            <LabelInputContainer className="mb-4">
+              <Label htmlFor="description">Description</Label>
+              <TextArea
+                id="description"
+                value={formData.description}
+                placeholder="Add a Description..."
+                rows={5}
+                name="description"
+                onChange={handleChange}
+              />
+            </LabelInputContainer>
+          )}
           <LabelInputContainer>
             <Label htmlFor="image">
               {formType === "project"
                 ? "Project Image"
                 : formType === "work-experience"
                 ? "Experience Image"
+                : formType === "internship"
+                ? "Company Logo"
                 : "Profile Image"}
             </Label>
             <CldUploadWidget
