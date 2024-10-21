@@ -138,7 +138,7 @@ const Testimonials = ({
           <InfiniteMovingCards
             items={testimonials}
             direction="left"
-            speed="normal"
+            speed="fast"
           />
         ) : (
           <h2 className="py-8 font-bold text-3xl text-blue-100">
@@ -270,7 +270,7 @@ const Testimonials = ({
         <h2 className="heading pt-20 text-blue-100">
           My <span className="text-purple">Internships</span>
         </h2>
-        <div className="flex flex-wrap pt-8 items-center justify-center gap-4 md:gap-16 mt-5">
+        <div className="grid xs-medium:grid-cols-2 grid-cols-3 pt-8 items-center justify-center gap-4 md:gap-16 mt-5">
           {internships.map(({ _id, imgUrl, company }) => (
             <div
               key={_id}

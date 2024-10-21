@@ -26,6 +26,7 @@ const config = {
       "2xl": "1536px",
       "xl-devices": "1600px",
       "xs-devices": { max: "390px" },
+      "xs-medium": { max: "470px" },
       "max-sm": { max: "639px" },
       "max-md": { max: "767px" },
       "max-lg": { max: "1090px" },
